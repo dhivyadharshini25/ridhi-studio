@@ -48,20 +48,21 @@ export default function Contact() {
           
             {contact?.instagram && (
               <a
-                href={
-                  contact.instagram.startsWith('http')
-                    ? contact.instagram
-                    : `https://${contact.instagram}`
-                }
+                href={contact.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block font-medium text-lavender-700"
               >
-                Instagram
+                Instagram: @ri_dhi.studio
               </a>
             )}
             {contact?.email && (
-              <a href={`mailto:${contact.email}`} className="block font-medium text-skyblue-700">Email: {contact.email}</a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="block font-medium text-skyblue-700"
+              >
+                Gmail: {contact.email}
+              </a>
             )}
           </div>
         </div>
