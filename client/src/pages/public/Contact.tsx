@@ -45,13 +45,23 @@ export default function Contact() {
                 WhatsApp: {contact.whatsapp}
               </a>
             )}
+          
             {contact?.instagram && (
-              <a href={contact.instagram} target="_blank" rel="noreferrer" className="block font-medium text-lavender-700">
+              <a
+                href={
+                  contact.instagram.startsWith('http')
+                    ? contact.instagram
+                    : `https://${contact.instagram}`
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block font-medium text-lavender-700"
+              >
                 Instagram
               </a>
             )}
             {contact?.email && (
-              <a href={`mailto:${contact.email}`} className="block font-medium text-skyblue-700">{contact.email}</a>
+              <a href={`mailto:${contact.email}`} className="block font-medium text-skyblue-700">Email: {contact.email}</a>
             )}
           </div>
         </div>
