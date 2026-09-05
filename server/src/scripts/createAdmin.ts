@@ -18,8 +18,16 @@ async function main() {
   const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email.toLowerCase()]);
 
   if (existing.rows[0]) {
-    await pool.query(`UPDATE users SET role = 'ADMIN' WHERE id = $1`, [existing.rows[0].id]);
-    console.log(`Existing user ${email} promoted to ADMIN.`);
+    const passwordHash = await bcrypt.hash(password, 12);
+
+    await pool.query(
+      `UPDATE users
+      SET role = 'ADMIN', password_hash = $1, is_active = true
+      WHERE id = $2`,
+      [passwordHash, existing.rows[0].id]
+    );
+
+    console.log(`Existing user ${email} promoted to ADMIN and password updated.`);
   } else {
     const passwordHash = await bcrypt.hash(password, 12);
     const { rows } = await pool.query(
