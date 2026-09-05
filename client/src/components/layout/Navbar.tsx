@@ -18,17 +18,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/80 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
-      <Link to="/" className="flex items-center gap-2">
-        <img
-          src="/image/logo.jpeg"
-          alt="RiDhi Studio Logo"
-          className="h-10 w-auto object-contain"
-        />
-
-        <span className="font-display text-xl font-bold text-lavender-700">
-          RiDhi Studio
-        </span>
-      </Link>
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src="/image/logo.jpeg"
+            alt="RiDhi Studio"
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <span className="font-display text-xl font-bold text-lavender-700">
+            RiDhi Studio
+          </span>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
