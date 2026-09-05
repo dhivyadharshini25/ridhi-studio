@@ -11,7 +11,11 @@ export const submitContactMessage = asyncHandler(async (req: Request, res: Respo
     `INSERT INTO contact_messages (name, email, phone, message) VALUES ($1,$2,$3,$4) RETURNING *`,
     [name, email, phone || null, message]
   );
-  await notifyAdmins('New contact message', `${name} sent a message.`);
+  // await notifyAdmins('New contact message', `${name} sent a message.`);
+  await notifyAdmins(
+    'New contact message',
+    `${name} sent a message.\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}`
+  );
   res.status(201).json({ success: true, message: 'Thanks for reaching out — we will get back to you soon.', data: rows[0] });
 });
 
